@@ -40,19 +40,17 @@ def display_hand(show_hand, name):
 def hit(card_hand1, deck, person):
     card_hand1.append(deck.pop())
     print (person + " at "  + str(current_score(card_hand1)))  
+
 ## Current Score 
 def current_score (card_hand):
     total = 0
     for i in  range((len(card_hand))):
-        total +=(int(card_hand[i][1]))
+        if ((card_hand[i][1]) >=  13 ):
+            total += 10
+        else:
+         total +=(int(card_hand[i][1]))
     return(total)
-## Check bust (Putting this in the loop not as a function)
-##def bust(card_hand2):
-  #  if (current_score(card_hand2)) > 22:
-   #     print("Bust! ")
-#        return 
-#   3if (current_score(card_hand2)) < 21:
-#   print("Awesome")  
+
 def score(player_hand2, computer_hand2):
 	if (current_score(player_hand2) == 21):
 		print ("Blackjack.")
