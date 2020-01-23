@@ -21,7 +21,7 @@ def deal_cards(player_hand, computer_hand):
         computer_hand.append(deck.pop())
 ## Display hand
 def display_hand(show_hand, name):
-    print(name + 'have : ')
+    print(name + ' has : ')
     for i in range (0,2):
         if(show_hand[i][1]) == 13:
             print("King of " + str(show_hand[i][0]))
@@ -32,6 +32,8 @@ def display_hand(show_hand, name):
         elif (show_hand [i][1]) < 11:
             print(str(show_hand[i][1]) + " of " + str(show_hand[i][0]))
     print('For a total of ' + str(current_score(show_hand)))
+
+
 
 def hit(card_hand1, deck, person):
     card_hand1.append(deck.pop())
@@ -50,23 +52,17 @@ def current_score (card_hand):
 #   3if (current_score(card_hand2)) < 21:
 #   print("Awesome")  
 def score(player_hand2, computer_hand2):
-	if current_score(player_hand2) == 21:
-		print (current_score(player_hand2))
+	if (current_score(player_hand2) == 21):
 		print ("Blackjack.")
-	elif current_score(computer_hand2) == 21:
-		print (current_score(player_hand2))
+	elif (current_score(computer_hand2) == 21):
 		print ("Dealer Blackjack.")
-	elif current_score(player_hand2) > 21:
-		print (current_score(player_hand2))
+	elif (current_score(player_hand2) > 21):
 		print ("You busted.")
-	elif current_score(computer_hand2) > 21:
-		print (current_score(player_hand2))
+	elif (current_score(computer_hand2) > 21):
 		print ("Dealer buster")
-	elif current_score(player_hand) < current_score(computer_hand):
-		print (current_score(player_hand2))
+	elif (current_score(player_hand) < current_score(computer_hand)):
 		print ("Sorry. You are lowers. You lose.")
-	elif current_score(player_hand) > current_score(computer_hand):
-		print (current_score(player_hand2))
+	elif (current_score(player_hand) > current_score(computer_hand)):
 		print ("Congrats you won")
         
 ## Evaulate dealers hand (Stand on 17)
@@ -86,6 +82,8 @@ def game():
             hit(player_hand,deck, "you")
             while current_score(computer_hand) < 17:
                 hit(computer_hand, deck, "dealer")
+            display_hand(player_hand, "Player")
+            display_hand(computer_hand, "Dealer")
             score(player_hand,computer_hand)
             exit()
         elif choice == "s":
@@ -100,6 +98,3 @@ def game():
 
 
 game()
-
-## Had some help from a python file i found on git, what is the best way to cite that?
-##     https://gist.github.com/mjhea0/568021
