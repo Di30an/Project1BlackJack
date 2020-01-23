@@ -7,6 +7,12 @@ computer_hand = []
 total = 0
 computer_score = 0
 
+def blackjack_banner():
+    welcome = "Welcome to Black Jack"
+    stars = '*' * len(welcome)
+    print(f'{stars} \n {stars} \n {welcome} \n {stars} \n {stars}')
+    
+
 def create_deck(deck):
     suite = ('Spade', 'Hearts','Diamonds','Clubs')
     for a in suite:
@@ -16,8 +22,7 @@ def create_deck(deck):
 ## Deal player hand (pop, pop)
 def deal_cards(player_hand, computer_hand):
     for i in range (1,3):
-        player_hand.append(deck.pop())
-    
+        player_hand.append(deck.pop())   
     for i in range(4,6):
         computer_hand.append(deck.pop())
 ## Display hand
@@ -30,22 +35,24 @@ def display_hand(show_hand, name):
             print("Queen of " + str(show_hand[i][0]))
         if(show_hand[i][1]) == 11:
             print("Jack of " + str(show_hand[i][0])) 
-        elif (show_hand [i][1]) < 11:
+        elif (show_hand [i][1]) <=  10:
             print(str(show_hand[i][1]) + " of " + str(show_hand[i][0]))
-    time.sleep(.5)
-    print('For a total of ' + str(current_score(show_hand)))
+    time.sleep(.7)
+    print('For a total of ' + str(current_score(show_hand)) +"\n" )
 
 
 
 def hit(card_hand1, deck, person):
     card_hand1.append(deck.pop())
-    print (person + " at "  + str(current_score(card_hand1)))  
+    print(str(card_hand1[0][1]) + " of " + str(card_hand1[0][0]))
+    print (person + " at "  + str(current_score(card_hand1))) 
+    return card_hand1 
 
 ## Current Score 
 def current_score (card_hand):
     total = 0
     for i in  range((len(card_hand))):
-        if ((card_hand[i][1]) >=  13 ):
+        if ((card_hand[i][1]) >=  11 ):
             total += 10
         else:
          total +=(int(card_hand[i][1]))
@@ -70,6 +77,7 @@ def score(player_hand2, computer_hand2):
 ## Play again or notsss
 
 def game():
+    blackjack_banner()
     choice =""
     create_deck(deck)
     deal_cards(player_hand, computer_hand)
@@ -80,7 +88,7 @@ def game():
         choice = input()
         if choice == "h" :
             hit(player_hand,deck, "you")
-            while current_score(computer_hand) < 17:
+            while current_score(computer_hand) +< 18:
                 hit(computer_hand, deck, "dealer")
             display_hand(player_hand, "Player")
             display_hand(computer_hand, "Dealer")
