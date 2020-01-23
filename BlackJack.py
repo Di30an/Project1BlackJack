@@ -1,5 +1,6 @@
 # Create Deck and shuffle
 import random
+import time
 deck =[]
 player_hand = []
 computer_hand = []
@@ -31,6 +32,7 @@ def display_hand(show_hand, name):
             print("Jack of " + str(show_hand[i][0])) 
         elif (show_hand [i][1]) < 11:
             print(str(show_hand[i][1]) + " of " + str(show_hand[i][0]))
+    time.sleep(.5)
     print('For a total of ' + str(current_score(show_hand)))
 
 
@@ -67,7 +69,7 @@ def score(player_hand2, computer_hand2):
         
 ## Evaulate dealers hand (Stand on 17)
 ## Evaluate winner, show hands
-## Play again
+## Play again or notsss
 
 def game():
     choice =""
@@ -89,6 +91,8 @@ def game():
         elif choice == "s":
             while current_score(computer_hand) < 17:
                 hit(computer_hand, deck, "dealer")
+            display_hand(player_hand, "Player")
+            display_hand(computer_hand, "Dealer")
             score(player_hand,computer_hand)
             exit()
         elif choice == "q":
